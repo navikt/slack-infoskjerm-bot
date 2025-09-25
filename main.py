@@ -6,6 +6,7 @@ from datetime import datetime
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
+from emoji import emojize
 
 load_dotenv()
 
@@ -35,9 +36,11 @@ print(f"Må ha bilde eller inkludere ord {TILLAT_LISTE}")
 class Melding:
     text: str
     image_url: Optional[str]
+    text_emoji: str = field(init=False)
     file_name: str = field(init=False)
 
     def __post_init__(self):
+        self.text_emoji = emojize(self.text)
         self.file_name = download_image(self, SLACK_BOT_TOKEN)
 
     def er_kake(self):
@@ -63,7 +66,7 @@ def generer_html(melding: Melding, html_navn = "index.html"):
         template = f.read()
 
     with open(html_navn, "w", encoding="utf-8") as f:
-        f.write(template.replace("{ TEKST }", melding.text).replace("{ BILDE }", melding.file_name))
+        f.write(template.replace("{ TEKST }", melding.text_emoji).replace("{ BILDE }", melding.file_name))
     
     return html_navn
 
