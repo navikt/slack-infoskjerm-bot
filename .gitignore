@@ -1,0 +1,24 @@
+# TOKENS
+.env
+
+# Kakebot related files
+image.png
+image.jpg
+index.html
+kakebot.log
+
+# Virtual environment
+venv/
+.venv/
+
+# Byte-code files
+*.pyc
+__pycache__/
+
+# Editor/IDE files
+.vscode/
+.idea/
+
+# Operating System files
+.DS_Store
+Thumbs.db
