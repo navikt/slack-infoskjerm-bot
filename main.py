@@ -40,7 +40,7 @@ class Melding:
     file_name: str = field(init=False)
 
     def __post_init__(self):
-        self.text_emoji = emojize(self.text)
+        self.text_emoji = emojize(self.text, language='alias')
         self.file_name = download_image(self, SLACK_BOT_TOKEN)
 
     def er_kake(self):
