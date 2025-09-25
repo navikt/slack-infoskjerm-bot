@@ -1,4 +1,4 @@
-![](logo.png)
+![](ressurser/logo.png)
 
 Designet for å funke på Raspberry Pi OS.
 
