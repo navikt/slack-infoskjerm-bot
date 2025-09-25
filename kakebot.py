@@ -63,7 +63,7 @@ def generer_html(melding: Melding, html_navn = "index.html"):
         template = f.read()
 
     with open(html_navn, "w", encoding="utf-8") as f:
-        f.write(template.replace("{ TEKST }", melding.text).replace("{ BILDE }", melding.file_name or "ingen_bilde.jpg"))
+        f.write(template.replace("{ TEKST }", melding.text).replace("{ BILDE }", melding.file_name))
     
     return html_navn
 
@@ -71,7 +71,7 @@ def aktiver_kakebot(melding: Melding):
     print("Aktiverer kakebot...")
     html_navn = generer_html(melding)
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    os.system(f'(sleep 2 && cvlc --intf dummy --play-and-exit --gain 5 {script_dir}/{KAKELYD})&')
+    os.system(f'(sleep 2 && cvlc --intf dummy --play-and-exit -q --gain 5 {script_dir}/ressurser/{KAKELYD})&')
     os.system(f'(firefox --new-tab "file://{script_dir}/{html_navn}")&')
     os.system(f'(sleep {SKJERM_TIMEOUT_SEKUNDER} && wtype -M ctrl w -m ctrl)&')
 
