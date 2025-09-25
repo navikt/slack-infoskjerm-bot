@@ -17,13 +17,13 @@ pip install -r requirements.txt
 
 Start manuelt:
 ```bash
-python kakebot.py 
+python main.py 
 ```
 
 Start automatisk: (log blir skrevet til kakebot.log i prosjektet)
 ```bash
-(crontab -l 2>/dev/null; echo "@reboot cd $(pwd) && $(pwd)/.venv/bin/python kakebot.py >> $(pwd)/kakebot.log 2>&1") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot cd $(pwd) && $(pwd)/.venv/bin/python main.py >> $(pwd)/kakebot.log 2>&1") | crontab -
 ```
 
-For å slette cronjob rediger bort linjen nederst i `crontab -e` eller kill midlertidlig med `pkill -f kakebot.py`
+For å slette cronjob rediger bort linjen nederst i `crontab -e` eller kill midlertidlig med `pkill -f main.py`
 
